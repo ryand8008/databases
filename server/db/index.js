@@ -1,11 +1,12 @@
 var mysql = require('mysql2');
 
-exports.dbConnection = mysql.createConnnection({
+exports.dbConnection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
   database: 'chat'
 });
+
 // Create a database connection and export it from this file.
 // Confirm that the credentials supplied for the connection are correct.
 // On Campus at pairing stations you'll use

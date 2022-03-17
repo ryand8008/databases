@@ -8,9 +8,10 @@ const API_URL = 'http://127.0.0.1:3000/classes';
 
 describe('Persistent Node Chat Server', () => {
   const dbConnection = mysql.createConnection({
+    host: 'localhost',
     user: 'root',
     password: '',
-    database: 'chat',
+    database: 'chat'
   });
 
   beforeAll((done) => {
@@ -43,7 +44,7 @@ describe('Persistent Node Chat Server', () => {
 
         /* TODO: You might have to change this test to get all the data from
          * your message table, since this is schema-dependent. */
-        const queryString = 'SELECT messageText FROM Messages';
+        const queryString = 'SELECT * FROM Messages';
         const queryArgs = [];
 
         dbConnection.query(queryString, queryArgs, (err, results) => {
@@ -54,7 +55,7 @@ describe('Persistent Node Chat Server', () => {
           expect(results.length).toEqual(1);
 
           // TODO: If you don't have a column named text, change this test.
-          expect(results[0].messageText).toEqual(message);
+          expect(results[0].message).toEqual(message);
           done();
         });
       })
@@ -65,7 +66,7 @@ describe('Persistent Node Chat Server', () => {
 
   it('Should output all messages from the DB', (done) => {
     // Let's insert a message into the db
-    const queryString = 'SELECT messageText FROM Messages';
+    const queryString = 'SELECT message FROM Messages';
     const queryArgs = []; // TODO IF ERRORS ----------------------------------
     /* TODO: The exact query string and query args to use here
      * depend on the schema you design, so I'll leave them up to you. */
